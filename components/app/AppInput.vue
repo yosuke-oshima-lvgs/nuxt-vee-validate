@@ -11,8 +11,12 @@ const { value, errorMessage } = useField(() => props.name);
 
 <template>
   <div>
-    <label :for="name">{{ label }}</label>
-    <input :id="name" :name="name" v-model="value" />
-    <span style="color: red" v-if="errorMessage">{{ errorMessage }}</span>
+    <div>
+      <label :for="name">
+        <span>{{ label }}</span>
+        <input :id="name" :name="name" v-model="value" />
+      </label>
+    </div>
+    <p style="color: red" v-if="errorMessage">{{ errorMessage }}</p>
   </div>
 </template>

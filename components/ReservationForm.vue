@@ -5,9 +5,9 @@ import * as yup from 'yup';
 
 const schema = toTypedSchema(
   yup.object({
-    name: yup.string().optional(),
+    name: yup.string().required(),
     email: yup.string().required().email(),
-    date: yup.date().nullable(),
+    reservationDate: yup.date().required(),
   })
 );
 
@@ -16,7 +16,7 @@ const { values, handleSubmit, errors, isSubmitting, meta } = useForm({
   initialValues: {
     name: '',
     email: '',
-    date: new Date(new Date().toDateString()),
+    reservationDate: new Date(new Date().toDateString()),
   },
 });
 const onSubmit = handleSubmit(async (formValues) => {
@@ -28,12 +28,16 @@ const onSubmit = handleSubmit(async (formValues) => {
 
 <template>
   <form @submit.prevent="onSubmit">
-    <AppInput name="name" label="Name" />
-    <AppInput name="email" label="Email" />
-    <AppCalendar name="date" label="Date" />
-    <AppButton label="Submit" type="submit" :disabled="isSubmitting" />
+    <h2>予約フォーム</h2>
+    <AppInput name="name" label="名前" />
+    <AppInput name="email" label="メールアドレス" />
+    <AppCalendar name="reservationDate" label="予約日" />
+    <AppButton label="予約する" type="submit" :disabled="isSubmitting" />
+
+    <div>
+      <pre style="color: green">values: {{ values }}</pre>
+      <pre style="color: red">errors: {{ errors }}</pre>
+      <pre style="color: blue">meta: {{ meta }}</pre>
+    </div>
   </form>
-  <pre style="color: green">{{ values }}</pre>
-  <pre style="color: red">{{ errors }}</pre>
-  <pre style="color: blue">{{ meta }}</pre>
 </template>

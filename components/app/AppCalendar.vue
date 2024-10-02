@@ -14,7 +14,9 @@ const { value, errorMessage } = useField<Date>(() => props.name);
 
 <template>
   <div>
-    <DatePicker :name="name" v-model="value" locale="ja" />
-    <span style="color: red" v-if="errorMessage">{{ errorMessage }}</span>
+    <div>
+      <DatePicker :name="name" v-model="value" locale="ja" />
+    </div>
+    <p style="color: red" v-if="errorMessage">{{ errorMessage }}</p>
   </div>
 </template>
