@@ -1,14 +1,8 @@
-<script setup lang="ts">
-defineProps<{
-  name: string;
-  label: string;
-}>();
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div>
-    <label :for="name">{{ label }}</label>
-    <AppInput name="name" label="Name" />
-    <AppInput name="email" label="Email" />
+    <AppInput name="name" label="名前" />
+    <AppInput name="email" label="メールアドレス" />
   </div>
 </template>
