@@ -7,9 +7,7 @@ const schema = toTypedSchema(
   yup.object({
     name: yup.string().optional(),
     email: yup.string().required().email(),
-    date: yup.date().min(new Date(new Date().toDateString())),
-    hour: yup.number().min(0).max(23),
-    minute: yup.number().min(0).max(59),
+    date: yup.date().nullable(),
   })
 );
 
@@ -19,8 +17,6 @@ const { values, handleSubmit, errors, isSubmitting, meta } = useForm({
     name: '',
     email: '',
     date: new Date(new Date().toDateString()),
-    hour: 0,
-    minute: 0,
   },
 });
 const onSubmit = handleSubmit(async (formValues) => {
@@ -34,12 +30,7 @@ const onSubmit = handleSubmit(async (formValues) => {
   <form @submit.prevent="onSubmit">
     <AppInput name="name" label="Name" />
     <AppInput name="email" label="Email" />
-    <AppCalendar
-      dateName="date"
-      hourName="hour"
-      minuteName="minute"
-      label="Date"
-    />
+    <AppCalendar name="date" label="Date" />
     <AppButton label="Submit" type="submit" :disabled="isSubmitting" />
   </form>
   <pre style="color: green">{{ values }}</pre>
