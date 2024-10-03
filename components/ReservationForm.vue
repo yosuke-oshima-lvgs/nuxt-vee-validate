@@ -35,9 +35,13 @@ const success = ref(false);
   <form @submit.prevent="onSubmit">
     <h2>予約フォーム</h2>
     <NameAndEmailInput />
+    <hr />
     <AppInput name="address" label="住所" />
+    <hr />
     <AppCalendar name="reservationDate" label="予約日" />
+    <hr />
     <AppButton label="予約する" type="submit" :disabled="isSubmitting" />
+    <hr />
     <p v-if="success" style="color: green">予約が成功しました！</p>
     <div>
       <pre style="color: green">values: {{ values }}</pre>
